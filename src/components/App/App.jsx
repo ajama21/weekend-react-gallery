@@ -1,17 +1,45 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import "./App.css";
+import GalleryList from "../GalleryList/GalleryList";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import Header from "../Header/Header";
 
 function App() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Gallery of My Life</h1>
-        </header>
-        <p>Gallery goes here</p>
-        <img src="images/goat_small.jpg"style={{ width: 'auto', height: '150px', marginRight: '20px'}}/>
-        <img src="images/my_family.jpg"style={{ width: 'auto', height: '500px', borderRadius: '50%'}} />
-      </div>
-    );
+
+  let [galleryItems, setGalleryItem] = useState([]);
+
+  // Call function so it runs once on component load
+  // Similar to jQuery's document ready
+  useEffect(() => {
+    fetchGalleryList();
+  }, []);
+
+        // Function to get the item from the server/database
+        const fetchGalleryList = () => {
+          axios({
+            method: 'GET',
+            url: '/gallery'
+          })
+            .then( (response) => {
+              console.log('Entire response:', response);
+              // The actual array comes from the data attribute on the response
+              // console.log('Just the data:', response.data);
+      
+              // Set data into component state
+              setGalleryItem(response.data);
+            })
+            .catch(function (error) {
+              console.log('Error on get:', error);
+            });
+        }
+
+  return (
+    <div className="App">
+      <Header />
+      <GalleryList />
+    </div>
+  );
 }
 
 export default App;

@@ -4,9 +4,9 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 function GalleryList() {
-  const [galleryList, setGalleryList] = useState([])
+  const [galleryList, setGalleryList] = useState([]);
 
-    // Call function so it runs once on component load
+  // Call function so it runs once on component load
   // Similar to jQuery's document ready
   useEffect(() => {
     fetchGalleryList();
@@ -21,7 +21,7 @@ function GalleryList() {
       .then((response) => {
         console.log("Entire response:", response);
         // The actual array comes from the data attribute on the response
-        console.log('Just the data:', response.data);
+        console.log("Just the data:", response.data);
 
         // Set data into component state
         setGalleryList(response.data);
@@ -33,9 +33,13 @@ function GalleryList() {
 
   return (
     <div className="galleryList">
-      {galleryList.map((itemImage)=>(
-          <GalleryItem key={itemImage.id} item={itemImage} getFreshData={()=>fetchGalleryList()}/>
-        ))}
+      {galleryList.map((itemImage) => (
+        <GalleryItem
+          key={itemImage.id}
+          item={itemImage}
+          getFreshData={() => fetchGalleryList()}
+        />
+      ))}
     </div>
   );
 }

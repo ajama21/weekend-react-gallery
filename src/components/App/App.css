@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: rgb(16, 153, 165);
 }
 
 .App header {
@@ -24,7 +25,8 @@
 .galleryList{
   display:flex; gap: 10px;
   flex-wrap: wrap;
-  padding-left: 20px;
+  padding-left: 150px;
+  padding-bottom: 10px;
 }
 
 .oneItem{
@@ -48,4 +50,7 @@ button{
 
 .imageText{
   height: 200px;
+background-color: white;
+  border-radius: 10%;
 }
+

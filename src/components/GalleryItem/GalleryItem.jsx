@@ -30,13 +30,13 @@ function GalleryItem({ item, getFreshData }) {
         ) : (
           <img
             src={item.path}
-            style={{ width: "auto", height: "150px", marginRight: "30px" }}
+            style={{ width: "auto", height: "150px", marginRight: "30px"}}
           />
         )}
       </div>
       <button onClick={()=>likingAction(item.id)}>I love this</button>
       {item.likes > 0 ? (
-        <p>{item.likes} people love this </p>
+        <p>{item.likes} people love this! </p>
       ) : (
         <p>No people love this ;(</p>
       )}
